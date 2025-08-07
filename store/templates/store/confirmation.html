@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Confirmed</title>
+</head>
+<body style="text-align:center; font-family:sans-serif; padding: 50px;">
+  <h2>✅ Order Confirmed</h2>
+  <p>Thank you, {{ name }}!</p>
+  <p>Your order will be shipped to:</p>
+  <p><strong>{{ address }}</strong></p>
+  <p>Payment Method: <strong>{{ payment_method }}</strong></p>
+  <br>
+  <a href="{% url 'home' %}">⬅️ Back to Home</a>
+</body>
+</html>

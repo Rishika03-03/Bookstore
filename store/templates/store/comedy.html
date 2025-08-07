@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comedy Books</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .books {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .books h2 {
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #333;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .book-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .book-card img {
+      max-width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .book-info h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+    .book-info p {
+      color: #333;
+      margin: 5px 0;
+    }
+    .book-info button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .book-info button:hover {
+      background: #45a049;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="books">
+    <h2>😂 Comedy Books</h2>
+    <div class="grid">
+
+      <!-- Book 1 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81BbVc2uRIL.jpg" alt="The Hitchhiker's Guide to the Galaxy">
+        <div class="book-info">
+          <h3>The Hitchhiker's Guide</h3>
+          <p>₹299</p>
+          <button onclick="addToCart('The Hitchhiker\'s Guide to the Galaxy', 299)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BZDRmNGY5MTUtNDQxMC00MjMyLWIzODQtNzU2ZTdhMjJhOTA5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Good Omens">
+        <div class="book-info">
+          <h3>Good Omens</h3>
+          <p>₹279</p>
+          <button onclick="addToCart('Good Omens', 279)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Bossypants_Cover_%28Tina_Fey%29_-_200px.jpeg" alt="Bossypants">
+        <div class="book-info">
+          <h3>Bossypants</h3>
+          <p>₹260</p>
+          <button onclick="addToCart('Bossypants', 260)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/91mWfTCab-L._UF894,1000_QL80_.jpg" alt="Me Talk Pretty One Day">
+        <div class="book-info">
+          <h3>Me Talk Pretty One Day</h3>
+          <p>₹250</p>
+          <button onclick="addToCart('Me Talk Pretty One Day', 250)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81vpsIs58WL._SL1500_.jpg" alt="Catch-22">
+        <div class="book-info">
+          <h3>Catch-22</h3>
+          <p>₹320</p>
+          <button onclick="addToCart('Catch-22', 320)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/513z2S4IIuL._AC_SY200_QL15_.jpg" alt="Yes Please">
+        <div class="book-info">
+          <h3>Yes Please</h3>
+          <p>₹295</p>
+          <button onclick="addToCart('Yes Please', 295)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 7 -->
+      <div class="book-card">
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1443264638i/10335308.jpg" alt="Is Everyone Hanging Out Without Me?">
+        <div class="book-info">
+          <h3>Is Everyone Hanging Out...</h3>
+          <p>₹270</p>
+          <button onclick="addToCart('Is Everyone Hanging Out Without Me?', 270)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 8 -->
+      <div class="book-card">
+        <img src="https://ik.imagekit.io/panmac/tr:di-placeholder_portrait_aMjPtD9YZ.jpg,tr:w-350,f-jpg,pr-true/edition/9781770106598.jpg" alt="Born a Crime">
+        <div class="book-info">
+          <h3>Born a Crime</h3>
+          <p>₹310</p>
+          <button onclick="addToCart('Born a Crime', 310)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function addToCart(title, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existing = cart.find(item => item.book === title);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ book: title, price: parseFloat(price), quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`"${title}" added to cart!`);
+    }
+  </script>
+</body>
+</html>

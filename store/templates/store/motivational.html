@@ -1,0 +1,180 @@
+<!-- store/motivational.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Motivational Books</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .books {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .books h2 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .book-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.3s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-card img {
+      max-width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .book-info h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .book-info p {
+      font-size: 16px;
+      color: #27ae60;
+      margin: 5px 0;
+    }
+
+    .book-info button {
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .book-info button:hover {
+      background-color: #d35400;
+    }
+  </style>
+</head>
+<body>
+  <section class="books">
+    <h2>📚 Motivational Books 💡</h2>
+    <div class="grid">
+      <!-- Book 1 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/71UwSHSZRnS.jpg" alt="The Power of Now">
+        <div class="book-info">
+          <h3>The Power of Now</h3>
+          <p>₹299</p>
+          <button onclick="addToCart('The Power of Now', 299)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg" alt="Think and Grow Rich">
+        <div class="book-info">
+          <h3>Think and Grow Rich</h3>
+          <p>₹199</p>
+          <button onclick="addToCart('Think and Grow Rich', 199)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/71m-MxdJ2WL.jpg" alt="You Can Win">
+        <div class="book-info">
+          <h3>You Can Win</h3>
+          <p>₹225</p>
+          <button onclick="addToCart('You Can Win', 225)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/41eNDB05oXL._UF1000,1000_QL80_.jpg" alt="Miracles Of Your Mind">
+        <div class="book-info">
+          <h3>The Subtle Art of Not Giving a F*ck</h3>
+          <p>₹349</p>
+          <button onclick="addToCart('The Subtle Art of Not Giving a F*ck', 349)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/61-hMfd7NGL.jpg" alt="Attitude is Everything">
+        <div class="book-info">
+          <h3>Attitude is Everything</h3>
+          <p>₹175</p>
+          <button onclick="addToCart('Attitude is Everything', 175)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/710jnzKlDTL.jpg" alt="How to Win Friends & Influence People">
+        <div class="book-info">
+          <h3>How to Win Friends & Influence People</h3>
+          <p>₹299</p>
+          <button onclick="addToCart('How to Win Friends & Influence People', 299)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 7 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81vpsIs58WL.jpg" alt="Rich Dad Poor Dad">
+        <div class="book-info">
+          <h3>Rich Dad Poor Dad</h3>
+          <p>₹279</p>
+          <button onclick="addToCart('Rich Dad Poor Dad', 279)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 8 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg" alt="The Alchemist">
+        <div class="book-info">
+          <h3>The Alchemist</h3>
+          <p>₹265</p>
+          <button onclick="addToCart('The Alchemist', 265)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(title, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existing = cart.find(item => item.book === title);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ book: title, price: parseFloat(price), quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`"${title}" added to cart!`);
+    }
+  </script>
+</body>
+</html>

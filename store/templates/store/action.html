@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Action Books</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+    .books {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .books h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+      font-size: 32px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 per row */
+      gap: 20px;
+    }
+    .book-card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .book-card img {
+      max-width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .book-info h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+    .book-info p {
+      font-size: 16px;
+      color: #333;
+    }
+    .book-info button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .book-info button:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="books">
+    <h2>🔥 Action Books</h2>
+    <div class="grid">
+
+      <!-- Book 1 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81MLvUqImDL._UF1000,1000_QL80_.jpg" alt="Die Hard">
+        <div class="book-info">
+          <h3>Die Hard</h3>
+          <p>₹250</p>
+          <button onclick="addToCart('Die Hard', 250)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Mad_Max_Fury_Road.jpg" alt="Mad Max: Fury Road">
+        <div class="book-info">
+          <h3>Mad Max: Fury Road</h3>
+          <p>₹300</p>
+          <button onclick="addToCart('Mad Max: Fury Road', 300)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFnXvFlL95j9OJBr7d11nUdRSZsn81GCRwPg&s" alt="The Bourne Identity">
+        <div class="book-info">
+          <h3>The Bourne Identity</h3>
+          <p>₹275</p>
+          <button onclick="addToCart('The Bourne Identity', 275)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/John_Wick_TeaserPoster.jpg/250px-John_Wick_TeaserPoster.jpg" alt="John Wick">
+        <div class="book-info">
+          <h3>John Wick</h3>
+          <p>₹320</p>
+          <button onclick="addToCart('John Wick', 320)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="book-card">
+        <img src="https://i.pinimg.com/474x/3f/b3/25/3fb32509eb8db304670b7faedf2208a7.jpg" alt="Mission Impossible">
+        <div class="book-info">
+          <h3>Mission Impossible</h3>
+          <p>₹350</p>
+          <button onclick="addToCart('Mission Impossible', 350)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="book-card">
+        <img src="https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p9286627_p_v10_ae.jpg" alt="Jack Reacher">
+        <div class="book-info">
+          <h3>Jack Reacher</h3>
+          <p>₹290</p>
+          <button onclick="addToCart('Jack Reacher', 290)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 7 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/71hA063DdxL._UF1000,1000_QL80_.jpg" alt="Atomic Blonde">
+        <div class="book-info">
+          <h3>Atomic Blonde</h3>
+          <p>₹310</p>
+          <button onclick="addToCart('Atomic Blonde', 310)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 8 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81Q6VOMci9L._UF1000,1000_QL80_.jpg" alt="Extraction">
+        <div class="book-info">
+          <h3>Extraction</h3>
+          <p>₹330</p>
+          <button onclick="addToCart('Extraction', 330)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function addToCart(title, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existing = cart.find(item => item.book === title);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ book: title, price: price, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`"${title}" added to cart!`);
+    }
+  </script>
+</body>
+</html>

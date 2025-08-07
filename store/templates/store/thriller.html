@@ -1,0 +1,180 @@
+<!-- store/thriller.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thriller Books</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .books {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .books h2 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .book-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.3s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-card img {
+      max-width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .book-info h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .book-info p {
+      font-size: 16px;
+      color: #27ae60;
+      margin: 5px 0;
+    }
+
+    .book-info button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .book-info button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <section class="books">
+    <h2>🔪 Thriller Books 🔍</h2>
+    <div class="grid">
+      <!-- Book 1 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81kqrwS1nNL._SL1500_.jpg" alt="The Girl with the Dragon Tattoo">
+        <div class="book-info">
+          <h3>The Girl with the Dragon Tattoo</h3>
+          <p>₹399</p>
+          <button onclick="addToCart('The Girl with the Dragon Tattoo', 399)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <img src="https://geekymythology.wordpress.com/wp-content/uploads/2015/01/gone-girl.jpg" alt="Gone Girl">
+        <div class="book-info">
+          <h3>Gone Girl</h3>
+          <p>₹349</p>
+          <button onclick="addToCart('Gone Girl', 349)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <img src="https://gyaanstore.com/cdn/shop/files/76_19c5d4ad-4724-4c92-bd98-57cf88dc7b19.png?v=1701858047&width=1946" alt="The Silent Patient">
+        <div class="book-info">
+          <h3>The Silent Patient</h3>
+          <p>₹299</p>
+          <button onclick="addToCart('The Silent Patient', 299)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/71y4X5150dL.jpg" alt="The Da Vinci Code">
+        <div class="book-info">
+          <h3>The Da Vinci Code</h3>
+          <p>₹319</p>
+          <button onclick="addToCart('The Da Vinci Code', 319)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/81RCo6+yH-L._UF1000,1000_QL80_.jpg" alt="Before I Go to Sleep">
+        <div class="book-info">
+          <h3>Before I Go to Sleep</h3>
+          <p>₹289</p>
+          <button onclick="addToCart('Before I Go to Sleep', 289)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="book-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5cQWXX-fWX3la0MJTespDyzC9o5DaROqHpg&s" alt="Behind Closed Doors">
+        <div class="book-info">
+          <h3>Behind Closed Doors</h3>
+          <p>₹279</p>
+          <button onclick="addToCart('Behind Closed Doors', 279)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 7 -->
+      <div class="book-card">
+        <img src="https://m.media-amazon.com/images/I/818FZJMXgUL._UF1000,1000_QL80_.jpg" alt="The Reversal">
+        <div class="book-info">
+          <h3>The Reversal</h3>
+          <p>₹315</p>
+          <button onclick="addToCart('The Reversal', 315)">🛒 Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 8 -->
+      <div class="book-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu9Y98YsMXsStUfO1-nCmpCRwGAHf-Lc9FGw&s" alt="The Woman in the Window">
+        <div class="book-info">
+          <h3>The Woman in the Window</h3>
+          <p>₹309</p>
+          <button onclick="addToCart('The Woman in the Window', 309)">🛒 Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(title, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existing = cart.find(item => item.book === title);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ book: title, price: parseFloat(price), quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`"${title}" added to cart!`);
+    }
+  </script>
+</body>
+</html>

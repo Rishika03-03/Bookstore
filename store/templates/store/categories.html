@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Categories</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2c3e50;
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .category {
+      text-decoration: none;
+      padding: 18px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .action        { background: linear-gradient(45deg, #e74c3c, #ff6b6b); }
+    .fiction       { background: linear-gradient(45deg, #9b59b6, #8e44ad); }
+    .comedy        { background: linear-gradient(45deg, #f39c12, #f1c40f); }
+    .thriller      { background: linear-gradient(45deg, #34495e, #2c3e50); }
+    .motivational  { background: linear-gradient(45deg, #27ae60, #2ecc71); }
+    .horror        { background: linear-gradient(45deg, #c0392b, #8e0e00); }
+  </style>
+</head>
+<body>
+
+  <h2>📚 Choose a Book Category</h2>
+
+  <div class="container">
+    <div class="column">
+      <a href="{% url 'action' %}" class="category action">🔥 Action</a>
+      <a href="{% url 'fictional' %}" class="category fiction">🌌 Fiction</a>
+      <a href="{% url 'comedy' %}" class="category comedy">😂 Comedy</a>
+    </div>
+    <div class="column">
+      <a href="{% url 'thriller' %}" class="category thriller">🔍 Thriller</a>
+      <a href="{% url 'motivational' %}" class="category motivational">💡 Motivational</a>
+      <a href="{% url 'horror' %}" class="category horror">👻 Horror</a>
+    </div>
+  </div>
+
+</body>
+</html>

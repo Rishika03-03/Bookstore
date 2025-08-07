@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Now</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f9f9f9;
+      padding: 30px;
+    }
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Buy Now - Checkout</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    <label for="name">Full Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="address">Shipping Address:</label>
+    <textarea name="address" rows="4" required></textarea>
+
+    <label for="payment_method">Payment Method:</label>
+    <select name="payment_method" required>
+      <option value="">-- Select Payment Method --</option>
+      <option value="UPI">UPI</option>
+      <option value="Credit Card">Credit Card</option>
+      <option value="Debit Card">Debit Card</option>
+      <option value="Cash on Delivery">Cash on Delivery</option>
+    </select>
+
+    <button type="submit">Proceed to Pay 💳</button>
+  </form>
+
+</body>
+</html>

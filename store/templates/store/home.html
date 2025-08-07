@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReadView Bookstore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #f9fafb; color: #333; }
+    nav.navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 40px; background: #1f2937; color: white;
+    }
+    nav .logo { font-size: 28px; font-weight: 600; color: #10b981; }
+    nav a {
+      color: white; margin-left: 20px; text-decoration: none; font-weight: 500;
+    }
+    nav a:hover { color: #10b981; }
+
+    .hero {
+      background: url('https://thumbs.dreamstime.com/b/stack-books-library-blur-bookshelf-background-light-generative-ai-364249840.jpg') center/cover no-repeat;
+      height: 360px; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; color: white; position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4);
+    }
+    .hero h1 {
+      position: relative; font-size: 44px; margin-bottom: 15px;
+    }
+    .hero p {
+      position: relative; font-size: 18px; margin-bottom: 25px;
+      max-width: 600px;
+    }
+    .hero .btn {
+      position: relative; margin: 8px; padding: 14px 30px;
+      border: none; font-size: 16px; border-radius: 6px; cursor: pointer;
+    }
+    .hero .btn-primary { background: #10b981; color: white; }
+    .hero .btn-secondary { background: #f59e0b; color: white; }
+
+    .books { padding: 50px 40px; text-align: center; }
+    .books h2 { font-size: 32px; margin-bottom: 30px; color: #1f2937; }
+    .grid {
+      display: grid; gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .book-card {
+      background: white; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s;
+    }
+    .book-card:hover { transform: translateY(-5px); }
+    .book-card img {
+      width: 100%; height: 300px; object-fit: cover;
+    }
+    .book-info { padding: 15px; text-align: center; }
+    .book-info h3 {
+      font-size: 18px; margin-bottom: 8px;
+    }
+    .book-info p {
+      font-size: 16px; color: #10b981; font-weight: 600;
+    }
+    .book-info a button {
+      margin-top: 12px; padding: 10px 25px;
+      background: #1f2937; color: white; border: none; border-radius: 5px;
+      cursor: pointer; font-size: 14px;
+    }
+    .book-info a button:hover { background: #374151; }
+
+    footer {
+      background: #1f2937; color: white; display: flex;
+      justify-content: space-around; flex-wrap: wrap; padding: 40px;
+      font-size: 14px;
+    }
+    footer .col {
+      flex: 1; min-width: 180px; margin: 15px;
+    }
+    footer .col h4 { margin-bottom: 15px; font-size: 18px; }
+    footer .col a {
+      display: block; color: #d1d5db; margin-bottom: 8px; text-decoration: none;
+    }
+    footer .col a:hover { color: #10b981; }
+    .payment-icons img { height: 32px; margin-right: 10px; }
+    .social-icons i {
+      font-size: 20px; margin-right: 12px; color: #10b981;
+    }
+    .copyright {
+      text-align: center; padding: 15px; background: #111827; color: #9ca3af;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  {% if request.user.is_authenticated %}
+    <h2>Welcome, {{ request.user.username }}!</h2>
+  {% endif %}
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📖 ReadView</div>
+    <div>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'category_view' %}">Categories</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+      {% endif %}
+    
+      <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Discover Your Next Favorite Book</h1>
+    <p>Browse the latest titles, bestsellers, and exclusive deals. Delivered to your doorstep within 24 hours.</p>
+    <a href="{% url 'buy_now' %}"><button class="btn btn-primary">Buy Now</button></a>
+    <a href="{% url 'category_view' %}"><button class="btn btn-secondary">Explore</button></a>
+  </div>
+
+  <!-- Book Gallery -->
+  <section class="books">
+    <h2>Popular Picks</h2>
+    <div class="grid">
+      {% for book in books %}
+        <div class="book-card">
+          <img src="{{ book.image }}" alt="{{ book.title }}">
+          <div class="book-info">
+            <h3>{{ book.title }}</h3>
+            <p>₹{{ book.price }}</p>
+            <a href="{% url 'add_to_cart' book.id %}">
+              <button>🛒 Add to Cart</button>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer>
+  <div class="col">
+    <h4>About ReadView</h4>
+    <p>Your go-to online bookstore for premium readers. Fast delivery, great discounts.</p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+  <div class="col">
+    <h4>Quick Links</h4>
+    <a href="{% url 'my_account' %}">My Account</a>
+    <a href="{% url 'orders' %}">🧾 My Orders</a>
+    <a href="{% url 'help' %}">Help</a>
+  </div>
+  <div class="col">
+    <h4>Payment Methods</h4>
+    <div class="payment-icons">
+      <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+      <img src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard">
+      <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal">
+      <img src="https://img.icons8.com/color/48/google-pay-india.png" alt="GPay">
+    </div>
+  </div>
+</footer>
+  <div class="copyright">
+    &copy; 2025 ReadView Bookstore, All rights reserved.
+  </div>
+  
+</body>
+</html>
