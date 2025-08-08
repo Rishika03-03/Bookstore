@@ -32,8 +32,8 @@ A classic, full-featured online bookstore web application built with Django. Rea
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/ReadView-Bookstore.git
-   cd ReadView-Bookstore
+   git clone https://github.com/Rishika03-03/Bookstore.git
+   cd Bookstore
    ```
 
 2. **Create a virtual environment (recommended):**
